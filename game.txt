@@ -1,0 +1,209 @@
+/**
+ * This program starts at init() when it is called in html
+ */
+
+/**
+ * Loads all images in the program
+ */
+var imageRepository = new function() {
+	// Define image name vars
+	this.background = new Image();
+	//this.enemy = new Image();
+
+	//Set image locations
+	this.background.src = "imgs/bg.png";
+	//this.enemy.src = "imgs/vocab/dog.jpg";
+};
+
+/**
+ * Creates the Drawable object which will be the base class for all drawable
+ * objects in the game. Sets up defualt variables that all child objects will
+ * inherit, as well as the defualt functions.
+ */
+
+
+/**
+ * Inheritable object that contains code used for renderable objects
+ */
+function Drawable() {
+	this.init = function(x, y) {
+		// X & Y are the 2d coordinates for on screen objects
+		this.x = x;
+		this.y = y;
+	}
+
+	this.speed = 0;
+	this.canvasWidth = 0;
+	this.canvasHeight = 0;
+
+	// All classes inheriting Drawable will need a draw function unique to each class
+	this.draw = function() {
+	};
+}
+
+/**
+ * Class for displaying the background
+ */
+function Background() {
+
+	// Implement abstract function draw
+	this.draw = function() {
+		this.context.drawImage(imageRepository.background, this.x, this.y);
+	};
+}
+
+/**
+ * Class that contains all data for individual enemy objects
+ */
+function Enemy() {
+	this.speed = 1;
+	this.index = Math.floor(Math.random()*wordList.length);
+	
+	
+	this.draw = function() {
+		
+		// Update moved location
+		this.y += this.speed;
+		// Draw
+		this.context.drawImage(wordList[this.index].img, this.x, this.y);
+	};
+}
+Enemy.imagewidth = 150; //Declared outside of class so it will be static
+// Inheriting Drawable to the Background and Enemy class
+Background.prototype = new Drawable();
+Enemy.prototype = new Drawable();
+
+/**
+ * Class for the Game that will contain all variables and instances will take place in.
+ * Reinitializing Game should reset the game
+ */
+function Game() {
+
+	// This will act as a constructor and a reset function
+	this.init = function() {
+		// Get the canvas element
+		this.bgCanvas = document.getElementById("gamecanvas");
+
+		// Test to see if canvas is supported
+		if (this.bgCanvas.getContext) {
+			this.bgContext = this.bgCanvas.getContext('2d');
+
+			// Pass canvas info to our objects
+			Background.prototype.context = this.bgContext;
+			Background.prototype.canvasWidth = this.bgCanvas.width;
+			Background.prototype.canvasHeight = this.bgCanvas.height;
+			// Enemy object init
+			Enemy.prototype.context = this.bgContext;
+			Enemy.prototype.canvasWidth = this.bgCanvas.width;
+			Enemy.prototype.canvasHeight = this.bgCanvas.height;
+
+			// Enemy Initialization
+			this.enemyArray = []; //Array of Enemy instances to contain all enemies
+			
+			/**
+			 * Replace the line below with another timer.
+			 * setInterval will continue running when the game is suspended
+			 */
+			var spawner = setInterval("spawnEnemy()", 1000); 
+			
+
+			// Initialize the background object
+			this.background = new Background();
+			this.background.init(0, 0); //Places the image to coordinates
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	// Start the animation loop
+	this.start = function() {
+		animate();
+	};
+}
+
+/**
+ * The animation loop. Calls the requestAnimationFrame shim to optimize the game
+ * loop and draws all game objects. This function must be a global function and
+ * cannot be within an object.
+ */
+function animate() {
+	requestAnimFrame(animate);
+	game.background.draw();
+	for ( var i = 0; i < game.enemyArray.length; i++) {
+		game.enemyArray[i].draw();
+	}
+}
+
+/**
+ * requestAnim shim layer by Paul Irish Finds the first API that works to
+ * optimize the animation loop, otherwise defaults to setTimeout().
+ */
+window.requestAnimFrame = (function() {
+	return window.requestAnimationFrame || window.webkitRequestAnimationFrame
+			|| window.mozRequestAnimationFrame || window.oRequestAnimationFrame
+			|| window.msRequestAnimationFrame
+			|| function(/* function */callback, /* DOMElement */element) {
+				window.setTimeout(callback, 1000 / 60);
+			};
+})();
+
+/**
+ * Initialize the Game and starts it.
+ */
+var game = new Game();
+
+function init() {
+	if (game.init())
+		game.start();
+}
+
+/**
+ * Can be called to spawn an enemy randomly
+ */
+function spawnEnemy() {
+	game.enemyArray.push(new Enemy()); //Creates a new instance of Enemy and adds it to the array
+	// Spawns image randomly on the X axis
+	game.enemyArray[game.enemyArray.length - 1].init(Math.floor(Math.random()
+			* (game.bgCanvas.width - Enemy.imagewidth)), 0);
+};
+
+/**
+ * Currently unimplemented game over function
+ */
+function endGame() {
+}
+
+/** Class to store vocab words
+ * Takes an image location string, "pimg", and an
+ * English word value string, "peng".
+ * The p stands for private to differ the names with the local vars
+ * 
+ * diff contains value for difficulty
+ * Difficulty:
+ * 1 - easy
+ * 2 - intermediate
+ * 3 - advanced
+ * 
+ * 
+ * cat is an integer with each number representing a category value;
+ * Categories:
+ * 1 - Body
+ */
+function Word (pimg, peng, pdiff, pcat) {
+	this.cat = pcat;
+	this.diff = pdiff;
+	this.img = new Image();
+	this.img.src = pimg;
+	this.eng = peng;
+}
+
+wordList = [
+            new Word("imgs/vocab/arm.png", "arm", 1, [1]),
+            new Word("imgs/vocab/dog.jpg", "dog", 1, [1]),
+            new Word("imgs/vocab/dog.jpg", "dog", 1, [1]),
+            new Word("imgs/vocab/dog.jpg", "dog", 1, [1]),
+            new Word("imgs/vocab/dog.jpg", "dog", 1, [1]),
+            new Word("imgs/vocab/dog.jpg", "dog", 1, [1])];
+
+console.log(wordList[0].cat);

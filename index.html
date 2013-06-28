@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Group 7 - Gamejam</title>
+	<script src="game.js"></script>
+
+	<style> /*CSS - Places the canvas on the webpage*/
+		canvas {
+			//position: relative;
+			top: 50px;
+			background: transparent;
+			border-style: solid;
+			border-width: 1px;
+			padding-left: 0;
+			padding-right: 0;
+			//margin-left: auto;
+			//margin-right: auto;
+			display: block;
+			position:absolute;
+			left:0px;
+			top:0px;
+		}
+		
+		input {
+			position: relative;
+			top: 550px;
+			z-index: 0;
+			padding-left: 0;
+			padding-right: 0;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+		
+		button {
+			position: absolute;
+			top: 550px;
+			left: 400px;
+			z-index: 0;
+		}
+	</style>
+</head>
+
+<body onload="init()">
+	<!-- onload now calls the init function from our javascript once the page has loaded  -->
+	<div style="position:relative; width:1024px; height:600px; margin-left: auto; margin-right: auto;">
+	<canvas id="gamecanvas" width="1024" height="600" style="z-index: -1;">
+		Your browser doesn't seem to support canvas. Try using
+		<a src="www.google.com/chrome/">Google Chrome</a>
+	</canvas>
+	<canvas id="strikes" width="1024" height="600" style="z-index: 0;"></canvas>
+	
+		<input type="text" id="textInput" onKeyUp="sendWord();">
+	</div>
+</body>
+</html>
