@@ -1,6 +1,7 @@
 /**
  * This program starts at init() when it is called in html
  */
+ 
 
 /**
  * Loads all images in the program
