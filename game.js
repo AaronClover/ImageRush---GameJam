@@ -19,7 +19,7 @@ var imageRepository = new function() {
 /**
  * Creates the Drawable object which will be the base class for all drawable
  * objects in the game. Sets up defualt variables that all child objects will
- * inherit, as well as the defualt functions.
+ * inherit, as well as the defualt f unctions.
  */
 
 
@@ -283,6 +283,8 @@ function spawnEnemy() {
  * Currently unimplemented game over function
  */
 function endGame() {
+var snd = new Audio("buzz.mp3"); // buffers automatically when created
+snd.play();
     game.init();
 }
 
