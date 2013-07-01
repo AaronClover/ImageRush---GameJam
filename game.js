@@ -75,13 +75,13 @@ function Enemy() {
         // Update moved location
         this.y += this.speed;
         // Draw
-        this.context.drawImage(wordList[this.index].img, this.x, this.y);
+        this.context.drawImage(this.word.img, this.x, this.y);
     };
     
-    this.init = function(x,y, word) {
+    this.init = function(x,y, index) {
         this.x=x;
         this.y=y;
-        this.index=index;
+        this.word = game.wordBank[index];
     };
 }
 Enemy.imagewidth = 150; //Declared outside of class so it will be static
@@ -261,7 +261,7 @@ function spawnEnemy() {
     x = Math.floor(Math.random()* (game.bgCanvas.width - Enemy.imagewidth));
     var index = Math.floor(Math.random()*game.wordBank.length);
          
-      
+    game.enemyArray.push(new Enemy());
     game.enemyArray[game.enemyArray.length - 1].init(x,y,index);
 	
 
