@@ -366,12 +366,12 @@ wordList = [
             new Word("imgs/vocab/nose.png", "nose", 1, [1]),
             new Word("imgs/vocab/dog.jpg", "dog", 1, [1]),
             new Word("imgs/vocab/cat.jpg", "cat", 1, [2]),
-            new Word("imgs/vocab/horse1.jpg", "horse", 1, [2]),
-            new Word("imgs/vocab/leg1.jpg", "leg", 1, [1]),
+            //new Word("imgs/vocab/horse1.jpg", "horse", 1, [2]),
+           // new Word("imgs/vocab/leg1.jpg", "leg", 1, [1]),
             new Word("imgs/vocab/hand.jpg", "hand", 1, [1]),
             new Word("imgs/vocab/bird.jpg", "bird", 1, [2]),
             new Word("imgs/vocab/fish.jpg", "fish", 1, [2]),
-            new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
+            //new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
             new Word("imgs/vocab/lion.jpg", "lion", 1, [2])];
             
             
