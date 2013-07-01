@@ -263,30 +263,6 @@ function spawnEnemy() {
          
     game.enemyArray.push(new Enemy());
     game.enemyArray[game.enemyArray.length - 1].init(x,y,index);
-	
-
-
-
-    var unique = false;
-    while (!unique) {
-        console.log(game.enemyArray);
-        unique = true;
-        
-        for (var i = 0; i < game.enemyArray.length; i++) {
-            if(index == game.enemyArray[i].index) {
-                unique = false;
-            }
-        }
-    }
-    
-    
-    game.enemyArray.push(new Enemy()); //Creates a new instance of Enemy and adds it to the array
-    // Spawns image randomly on the X axis
-    
-    
-    
-    game.enemyArray[game.enemyArray.length - 1].init(x,y,index);
-    
     
    
 };
@@ -305,7 +281,7 @@ function sendWord() {
       if(event.keyCode==13){//check enter key
         var textValue = document.getElementById('textInput').value;
         for (var i = 0; i < game.enemyArray.length; i++){
-            if (wordList[game.enemyArray[i].index].eng == textValue) {
+            if (game.enemyArray[i].word.eng == textValue) {
                 game.enemyArray.splice(i, 1);
                 game.score++;
             }
@@ -371,7 +347,7 @@ wordList = [
             new Word("imgs/vocab/hand.jpg", "hand", 1, [1]),
             new Word("imgs/vocab/bird.jpg", "bird", 1, [2]),
             new Word("imgs/vocab/fish.jpg", "fish", 1, [2]),
-            //new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
+            new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
             new Word("imgs/vocab/lion.jpg", "lion", 1, [2])];
             
             
