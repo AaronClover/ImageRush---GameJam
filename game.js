@@ -67,6 +67,7 @@ function GameInterface() {
  */
 function Enemy() {
     this.speed = 1;
+    this.word;
     
     
     this.draw = function() {
@@ -77,7 +78,7 @@ function Enemy() {
         this.context.drawImage(wordList[this.index].img, this.x, this.y);
     };
     
-    this.init = function(x,y,index) {
+    this.init = function(x,y, word) {
         this.x=x;
         this.y=y;
         this.index=index;
@@ -142,6 +143,9 @@ function Game() {
             
             // Enemy Initialization
             this.enemyArray = []; //Array of Enemy instances to contain all enemies
+
+	    //Word bank init
+	    this.wordBank = wordList;
             
             /**
              * Replace the line below with another timer.
@@ -242,6 +246,7 @@ window.requestAnimFrame = (function() {
 var game = new Game();
 
 function init() {
+    loadMenu();
     if (game.init())
         game.start();
 }
@@ -254,12 +259,19 @@ function spawnEnemy() {
     var y =-150;
     var index;
     x = Math.floor(Math.random()* (game.bgCanvas.width - Enemy.imagewidth));
-    
+    var index = Math.floor(Math.random()*game.wordBank.length);
+         
+      
+    game.enemyArray[game.enemyArray.length - 1].init(x,y,index);
+	
+
+
+
     var unique = false;
     while (!unique) {
         console.log(game.enemyArray);
         unique = true;
-        index = Math.floor(Math.random()*wordList.length);
+        
         for (var i = 0; i < game.enemyArray.length; i++) {
             if(index == game.enemyArray[i].index) {
                 unique = false;
@@ -301,6 +313,27 @@ function sendWord() {
         document.getElementById('textInput').value = "";//clear after enter key
       }
     }
+
+function loadMenu() {
+
+document.getElementById("mainmenu").width = 1024;
+	var menuImg= new Image();
+	menuImg.src = "imgs/mainmenu.png"
+	var canvas = document.getElementById('mainmenu');
+	var context = canvas.getContext('2d');
+	context.drawImage(menuImg,0,0);
+	console.log(canvas);
+	startGame();
+	return;
+};
+
+function startGame() {
+  
+  game.start; // Starts game
+  document.getElementById("mainmenu").style.zIndex= -5;
+  document.getElementById("mainmenu").width = 0;
+
+}
 
 /** Class to store vocab words
  * Takes an image location string, "pimg", and an
