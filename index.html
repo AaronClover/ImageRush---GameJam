@@ -3,7 +3,9 @@
 <html>
 <head>
 <title>Image Rush</title>
+
 <script src="game.js"></script>
+<script src="Mainmenu.js"></script>
 
 <style> /*CSS - Places the canvas on the webpage*/
 #gamecanvas {
@@ -56,10 +58,12 @@ button {
 <body onload="init()">
 <!-- onload now calls the init function from our javascript once the page has loaded  -->
 <div style="position: relative; width: 1024px; height: 600px; margin-left: auto; margin-right: auto;">
-<canvas id="gamecanvas" width="1024" height="600" style="z-index: -1;">
+<canvas id="gamecanvas" width="1024" height="600" style="z-index: -2;">
 Your browser doesn't seem to support canvas. Try using <a
-	src="www.google.com/chrome/">Google Chrome</a> </canvas> <canvas id="strikes"
-	width="1024" height="600" style="z-index: 0;"></canvas> 
+	src="www.google.com/chrome/">Google Chrome</a> </canvas> 
+	<canvas id="strikes"
+	width="1024" height="600" style="z-index: -1;"></canvas> 
+	<canvas id="mainmenu" height="600" width="1024" style="z-index: 0;"></canvas>
 	
 	<div id = "input">
 		<input type="text" id="textInput" onKeyUp="sendWord();">
