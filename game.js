@@ -348,6 +348,10 @@ wordList = [
             new Word("imgs/vocab/bird.jpg", "bird", 1, [2]),
             new Word("imgs/vocab/fish.jpg", "fish", 1, [2]),
             new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
-            new Word("imgs/vocab/lion.jpg", "lion", 1, [2])];
+            new Word("imgs/vocab/lion.jpg", "lion", 1, [2]),
+			new Word("imgs/vocab/feet.png", "feet", 1, [1]),
+			new Word("imgs/vocab/ear.png", "ear", 1, [1]),
+			new Word("imgs/vocab/peacock.png", "peacock", 1, [1])];
+			
             
             
