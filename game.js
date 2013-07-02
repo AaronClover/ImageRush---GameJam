@@ -111,8 +111,12 @@ function Game() {
         this.score = 0;
         this.timer = 0;
         this.strikes = 0;
+		this.wordList = getCat(1);
+		this.wordBank = this.wordList;
+		this.wordGuessed = new Array();
         // Get the canvas element
         this.bgCanvas = document.getElementById("gamecanvas");
+		this.textContext = document.getElementById("strikes").getContext('2d');
         //document.getElementById('textInput').focus(); //Brings focus to text box
        // document.textform.action = sendWord(); // Makes it so the text box will submit the word
 
@@ -144,8 +148,6 @@ function Game() {
             // Enemy Initialization
             this.enemyArray = []; //Array of Enemy instances to contain all enemies
 
-	    //Word bank init
-	    this.wordBank = wordList;
             
             /**
              * Replace the line below with another timer.
@@ -170,6 +172,42 @@ function Game() {
         animate();
     };
 }
+
+function printWordList() {
+game.textContext.font="bold 20px Arial";
+	for (var i = 0; i < game.wordList.length; i++) {
+	var match = false;
+     for (var k = 0; k < game.wordBank.length; k++) {
+		if (game.wordList[i] == game.wordBank[k]){
+		match = true;
+		}
+		
+	 }
+	 if (match) {
+	    game.textContext.font="bold 20px Arial";
+        game.textContext.fillStyle="#000";
+		game.textContext.fillText(game.wordList[i].eng, 900, 100 + (20*i));
+		}
+	
+	else {
+		  game.textContext.fillStyle= "#eaeaea";
+		  game.textContext.fillText(game.wordList[i].eng, 900, 100 + (20*i));
+		  }
+	}
+}
+
+function getCat(catNum) {
+	var catArr = new Array();
+	for (var i = 0; i < wordLib.length; i++) {
+		for (var k = 0;  k < wordLib[i].cat.length; k++) {
+			if (wordLib[i].cat[k] == catNum) {
+			catArr.push(wordLib[i]);
+			}
+		}
+	}
+	return catArr;
+}
+
 
 /**
  * The animation loop. Calls the requestAnimationFrame shim to optimize the game
@@ -222,8 +260,11 @@ function animate() {
         strikestring = "X X X";
         break;
     }
-    document.getElementById("strikes").getContext('2d').clearRect(0, 0, 1024, 600);//!!! Fix magic numbers
-    document.getElementById("strikes").getContext('2d').fillText(strikestring, 900, 570);
+    game.textContext.clearRect(0, 0, 1024, 600);
+	//!!! Fix magic numbers
+    game.textContext.fillText(strikestring, 900, 570);
+	printWordList();
+	
     
 }
 
@@ -282,6 +323,7 @@ function sendWord() {
         var textValue = document.getElementById('textInput').value;
         for (var i = 0; i < game.enemyArray.length; i++){
             if (game.enemyArray[i].word.eng == textValue) {
+				game.wordGuessed.push(game.enemyArray[i].word);
                 game.enemyArray.splice(i, 1);
                 game.score++;
             }
@@ -298,16 +340,16 @@ document.getElementById("mainmenu").width = 1024;
 	var canvas = document.getElementById('mainmenu');
 	var context = canvas.getContext('2d');
 	context.drawImage(menuImg,0,0);
-	console.log(canvas);
-	startGame();
+	//startGame();
 	return;
 };
 
 function startGame() {
   
   game.start; // Starts game
-  document.getElementById("mainmenu").style.zIndex= -5;
+  //document.getElementById("mainmenu").style.zIndex= -5;
   document.getElementById("mainmenu").width = 0;
+  document.getElementById("mainmenucontainer").style.dispaly = "none";
 
 }
 
@@ -336,18 +378,18 @@ function Word (pimg, peng, pdifficulty, pcat) {
     this.eng = peng;
 }
 
-wordList = [
+wordLib = [
             new Word("imgs/vocab/arm.png", "arm", 1, [1]),       
             new Word("imgs/vocab/eye.png", "eye", 1, [1]),
             new Word("imgs/vocab/nose.png", "nose", 1, [1]),
-            new Word("imgs/vocab/dog.jpg", "dog", 1, [1]),
+            new Word("imgs/vocab/dog.jpg", "dog", 1, [2]),
             new Word("imgs/vocab/cat.jpg", "cat", 1, [2]),
             //new Word("imgs/vocab/horse1.jpg", "horse", 1, [2]),
            // new Word("imgs/vocab/leg1.jpg", "leg", 1, [1]),
             new Word("imgs/vocab/hand.jpg", "hand", 1, [1]),
             new Word("imgs/vocab/bird.jpg", "bird", 1, [2]),
             new Word("imgs/vocab/fish.jpg", "fish", 1, [2]),
-            new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
+            //new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
             new Word("imgs/vocab/lion.jpg", "lion", 1, [2])];
             
             
