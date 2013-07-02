@@ -63,7 +63,17 @@ Your browser doesn't seem to support canvas. Try using <a
 	src="www.google.com/chrome/">Google Chrome</a> </canvas> 
 	<canvas id="strikes"
 	width="1024" height="600" style="z-index: -1;"></canvas> 
+	<div id="mainmenucontainer" width="1024" height ="600" style="z-index: 0; display: block;">
+	  <a
+onMouseOver="return changeImage()"
+onMouseOut= "return changeImageBack()"
+onMouseDown="return handleMDown()"
+onMouseUp="return startGame()"
+><img
+name="jsbutton" src="imgs/playnone.png" width="110" height="28" border="0"
+alt="javascript button"></a>
 	<canvas id="mainmenu" height="600" width="1024" style="z-index: 0;"></canvas>
+	</div>
 	
 	<div id = "input" style="z-index: -1">
 		<input type="text" id="textInput" onKeyUp="sendWord();">
