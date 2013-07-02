@@ -349,7 +349,7 @@ function startGame() {
   game.start; // Starts game
   //document.getElementById("mainmenu").style.zIndex= -5;
   document.getElementById("mainmenu").width = 0;
-  document.getElementById("mainmenucontainer").style.dispaly = "none";
+  document.getElementById("mainmenucontainer").style.display = "none";
 
 }
 
