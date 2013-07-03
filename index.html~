@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Image Rush</title>
+
+<script src="game.js"></script>
+<script src="Mainmenu.js"></script>
+
+<style> /*CSS - Places the canvas on the webpage*/
+#gamecanvas {
+	z-index: -1;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #888;
+	box-shadow: 0px 0px 7px #888888;
+}
+
+body {
+	background-color: #eaeaea;
+}
+
+canvas { //
+	position: relative;
+	background: transparent;
+	padding-left: 0;
+	padding-right: 0; //
+	margin-left: auto; //
+	margin-right: auto;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 30px;
+}
+
+#input {
+	position: relative;
+	top: 595px;
+	z-index: 0;
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 200px;
+}
+
+button {
+	position: absolute;
+	top: 550px;
+	left: 400px;
+	z-index: 0;
+}
+</style>
+</head>
+
+<body onload="init()">
+<!-- onload now calls the init function from our javascript once the page has loaded  -->
+<div style="position: relative; width: 1024px; height: 600px; margin-left: auto; margin-right: auto;">
+<canvas id="gamecanvas" width="1024" height="600" style="z-index: -2;">
+Your browser doesn't seem to support canvas. Try using <a
+	src="www.google.com/chrome/">Google Chrome</a> </canvas> 
+	<canvas id="strikes"
+	width="1024" height="600" style="z-index: -1;"></canvas> 
+	<canvas id="mainmenu" height="600" width="1024" style="z-index: 0;"></canvas>
+	
+	<div id = "input" style="z-index: -1">
+		<input type="text" id="textInput" onKeyUp="sendWord();">
+	</div>
+	
+	</div>
+</body>
+</html>
