@@ -82,6 +82,7 @@ function Enemy() {
         this.x=x;
         this.y=y;
         this.word = game.wordBank[index];
+	game.wordBank.splice(index, 1);
     };
 }
 Enemy.imagewidth = 150; //Declared outside of class so it will be static
@@ -322,7 +323,7 @@ function sendWord() {
         var textValue = document.getElementById('textInput').value;
         for (var i = 0; i < game.enemyArray.length; i++){
             if (game.enemyArray[i].word.eng == textValue) {
-				game.wordGuessed.push(game.enemyArray[i].word);
+		game.wordGuessed.push(game.enemyArray[i].word);
                 game.enemyArray.splice(i, 1);
                 game.score++;
             }
@@ -335,10 +336,11 @@ function loadMenu() {
 
 	document.getElementById("mainmenu").width = 1024;
 	var menuImg= new Image();
-	menuImg.src = "imgs/mainmenu.png";
 	var canvas = document.getElementById('mainmenu');
 	var context = canvas.getContext('2d');
-	context.drawImage(menuImg,0,0);
+	menuImg.src = "imgs/mainmenu.png";
+	context.clearRect(0, 0, 1024, 600);
+	menuImg.onload = function() { context.drawImage(menuImg,0,0);};
 	console.log("mainmenu finished" + context + menuImg);
 	return;
 };
