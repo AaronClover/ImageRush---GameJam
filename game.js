@@ -177,10 +177,10 @@ function Game() {
 function printWordList() {
 game.textContext.font="bold 20px Arial";
 	for (var i = 0; i < game.wordList.length; i++) {
-	var match = false;
-     for (var k = 0; k < game.wordBank.length; k++) {
-		if (game.wordList[i] == game.wordBank[k]){
-		match = true;
+	var match = true;
+     for (var k = 0; k < game.wordGuessed.length; k++) {
+		if (game.wordList[i] == game.wordGuessed[k]){
+		match = false;
 		}
 		
 	 }
