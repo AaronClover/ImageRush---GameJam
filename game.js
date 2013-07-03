@@ -326,6 +326,7 @@ function sendWord() {
 		game.wordGuessed.push(game.enemyArray[i].word);
                 game.enemyArray.splice(i, 1);
                 game.score++;
+				
             }
         }
         document.getElementById('textInput').value = "";//clear after enter key
