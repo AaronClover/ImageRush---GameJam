@@ -288,8 +288,7 @@ var game = new Game();
 
 function init() {
     loadMenu();
-    if (game.init())
-        game.start();
+    game.init();
 }
 
 /**
@@ -340,13 +339,11 @@ document.getElementById("mainmenu").width = 1024;
 	var canvas = document.getElementById('mainmenu');
 	var context = canvas.getContext('2d');
 	context.drawImage(menuImg,0,0);
-	//startGame();
 	return;
 };
 
 function startGame() {
-  
-  game.start; // Starts game
+  game.start(); // Starts game
   //document.getElementById("mainmenu").style.zIndex= -5;
   document.getElementById("mainmenu").width = 0;
   document.getElementById("mainmenucontainer").style.display = "none";
@@ -389,7 +386,7 @@ wordLib = [
             new Word("imgs/vocab/hand.jpg", "hand", 1, [1]),
             new Word("imgs/vocab/bird.jpg", "bird", 1, [2]),
             new Word("imgs/vocab/fish.jpg", "fish", 1, [2]),
-            new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
+            //new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
             new Word("imgs/vocab/lion.jpg", "lion", 1, [2]),
 			new Word("imgs/vocab/feet.png", "feet", 1, [1]),
 			new Word("imgs/vocab/ear.png", "ear", 1, [1]),

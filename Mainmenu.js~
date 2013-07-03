@@ -1,7 +1,7 @@
 upImage = new Image();
-upImage.src = "imgs/playhover.jpg";
+upImage.src = "imgs/playhover.png	";
 downImage = new Image();
-downImage.src = "imgs/playclick.jpg"
+downImage.src = "imgs/playclick.png"
 normalImage = new Image();
 normalImage.src = "imgs/playnone.png";
  
