@@ -333,12 +333,13 @@ function sendWord() {
 
 function loadMenu() {
 
-document.getElementById("mainmenu").width = 1024;
+	document.getElementById("mainmenu").width = 1024;
 	var menuImg= new Image();
-	menuImg.src = "imgs/mainmenu.png"
+	menuImg.src = "imgs/mainmenu.png";
 	var canvas = document.getElementById('mainmenu');
 	var context = canvas.getContext('2d');
 	context.drawImage(menuImg,0,0);
+	console.log("mainmenu finished" + context + menuImg);
 	return;
 };
 

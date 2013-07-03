@@ -333,12 +333,13 @@ function sendWord() {
 
 function loadMenu() {
 
-document.getElementById("mainmenu").width = 1024;
+	document.getElementById("mainmenu").width = 1024;
 	var menuImg= new Image();
 	menuImg.src = "imgs/mainmenu.png"
 	var canvas = document.getElementById('mainmenu');
 	var context = canvas.getContext('2d');
 	context.drawImage(menuImg,0,0);
+	console.log("mainmenu finished" + context + menuImg);
 	return;
 };
 
@@ -386,7 +387,7 @@ wordLib = [
             new Word("imgs/vocab/hand.jpg", "hand", 1, [1]),
             new Word("imgs/vocab/bird.jpg", "bird", 1, [2]),
             new Word("imgs/vocab/fish.jpg", "fish", 1, [2]),
-            new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
+            //new Word("imgs/vocab/bear.jpg", "bear", 1, [2]),
             new Word("imgs/vocab/lion.jpg", "lion", 1, [2]),
 			new Word("imgs/vocab/feet.png", "feet", 1, [1]),
 			new Word("imgs/vocab/ear.png", "ear", 1, [1]),

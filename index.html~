@@ -34,14 +34,11 @@ canvas { //
 	top: 30px;
 }
 
-#input {
-	position: relative;
-	top: 595px;
-	z-index: 0;
-	padding-left: 0;
-	padding-right: 0;
-	margin-left: auto;
-	margin-right: auto;
+#textInput {
+	position: absolute;
+	top: 5950px;
+	z-index: -1;
+	left: 412px;
 	display: block;
 	width: 200px;
 }
@@ -61,6 +58,7 @@ button {
 <canvas id="gamecanvas" width="1024" height="600" style="z-index: -2;">
 Your browser doesn't seem to support canvas. Try using <a
 	src="www.google.com/chrome/">Google Chrome</a> </canvas> 
+<input type="text" id="textInput" onKeyUp="sendWord();">
 	<canvas id="strikes"
 	width="1024" height="600" style="z-index: -1;"></canvas> 
 	<div id="mainmenucontainer" width="1024" height ="600" style="z-index: 0; display: block;">
@@ -69,13 +67,13 @@ Your browser doesn't seem to support canvas. Try using <a
 onMouseOver="return changeImage()"
 onMouseOut= "return changeImageBack()"
 onMouseDown="return handleMDown()"
-onMouseUp="return startGame()"
+onMouseUp="startGame()"
 style = "position: absolute; z-index: 1; left: 437px; top: 400px;"><img
 name="jsbutton" src="imgs/playnone.png" border="0"
 alt="javascript button"></a>
 	
-	<div id = "input" style="z-index: -1">
-		<input type="text" id="textInput" onKeyUp="sendWord();">
+	<div id = "input" style="z-index: 1">
+		
 	</div>
 	
 	</div>
